@@ -1,4 +1,4 @@
-build/
-src/css/.sass-cache
+node_modules
+build
 .idea
 pageruler.zip

@@ -10,8 +10,23 @@ Please use the [issue tracker](https://github.com/wrakky/page-ruler/issues) to r
 
 ## Contribute
 
-All contributions are welcome. Source code is located in the `src` directory. Once changes have been made, `./build.sh`
-can be run which will create a new build in the `build` directory for your local testing.
+All contributions are welcome. The project uses [Grunt](http://gruntjs.com/) for automated builds and [Less](http://lesscss.org/) for CSS.
+
+### Quickstart
+
+Install [node.js](http://nodejs.org/). Once installed run the following commands to install grunt, less and generate a build.
+
+```bash
+npm install -g grunt-cli
+npm install -g less
+cd /path/to/pageruler
+npm install
+grunt
+```
+
+Source code is located in the `src` directory. Grunt will monitor any changes to the files in this folder and automatically compile
+and generate a new builds in the `build` directory. Set `/path/to/pageruler/build` as the location of your unpacked extension and
+you can now makes changes and see the results in your browser.
 
 ### Translating
 
