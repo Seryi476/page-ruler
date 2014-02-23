@@ -32,31 +32,23 @@ pr.Dimensions = {
 
 	/**
 	 * Return the amount the page top has been offset by top margin and the pageruler toolbar
+	 * Borrowed from jQuery.offset() method https://github.com/jquery/jquery/blob/master/src/offset.js
 	 * @return Number
 	 */
 	offsetTop:	function() {
 
-		var pageOffset = document.body.scrollHeight - document.documentElement.scrollHeight;
-
-		var toolbarHeight = pr.elements.toolbar.height;
-
-		// also reduce by element toolbar height if enabled
-		if (pr.elements.toolbar.elementMode) {
-			toolbarHeight += pr.elements.toolbar.elementToolbar.height;
-		}
-
-		return pageOffset + toolbarHeight;
+		return document.body.getBoundingClientRect().top + window.pageYOffset - document.documentElement.clientTop;
 
 	},
 
 	/**
 	 * Return the amount the page left has been offset by left margin
+	 * Borrowed from jQuery.offset() method https://github.com/jquery/jquery/blob/master/src/offset.js
 	 * @type Number
 	 */
 	offsetLeft:	function() {
 
-		// @todo This needs fixing for when the page has horizontal scroll
-		return document.body.getBoundingClientRect().left;
+		return document.body.getBoundingClientRect().left + window.pageXOffset - document.documentElement.clientLeft;
 
 	},
 
