@@ -139,7 +139,7 @@ pr.el.ElementToolbar = pr.cls(
 			this.toolbar.dom.style.setProperty('height', pr.Util.px(height), 'important');
 
 			// shift the page down some more so the toolbar doesn't overlap content
-			this.toolbar.shiftPageDown(height);
+			this.toolbar.shiftPage(height);
 
 			// turn on tracking mode by default
 			this.setTracking(true, true);
@@ -166,7 +166,7 @@ pr.el.ElementToolbar = pr.cls(
 			this.toolbar.dom.style.removeProperty('height');
 
 			// reshift page
-			this.toolbar.shiftPageDown(this.toolbar.height);
+			this.toolbar.shiftPage(this.toolbar.height);
 
 			// disable tracking mode
 			this.setTracking(false, true);

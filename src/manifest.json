@@ -32,7 +32,9 @@
 		"images/arrow-up.png",
 		"images/arrow-down.png",
 		"images/arrow-left.png",
-		"images/arrow-right.png"
+		"images/arrow-right.png",
+		"images/dock-top.png",
+		"images/dock-bottom.png"
 	],
 
 	"content_security_policy": "script-src 'self' https://ssl.google-analytics.com; object-src 'self'",

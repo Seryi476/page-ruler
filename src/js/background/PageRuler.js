@@ -352,6 +352,37 @@ chrome.runtime.onMessage.addListener(function(message, sender, sendResponse) {
 
 		break;
 
+		// sets the dock position of the toolbar
+		case 'setDockPosition':
+
+			console.log('saving dock position ' + message.position);
+
+			PageRuler.Analytics.trackEvent('Settings', 'Dock', message.position);
+
+			chrome.storage.sync.set({
+				'dock':	message.position
+			});
+
+		break;
+
+		// get the toolbar dock position
+		case 'getDockPosition':
+
+			console.log('requesting dock position');
+
+			chrome.storage.sync.get('dock', function(items) {
+
+				// get colour or default to top
+				var position = items.dock || 'top';
+
+				console.log('dock position requested: ' + position);
+
+				sendResponse(position);
+
+			});
+
+			break;
+
 		// track an event
 		case 'trackEvent':
 

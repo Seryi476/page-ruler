@@ -218,6 +218,18 @@
 	"updateTip": {
 		"message": "Tip: Use the Alt+P shortcut to enable and disable Page Ruler, or assign a different shortcut from the Keyboard Shortcuts section in the Extensions tab",
 		"description": "Message informing users about the shortcut key"
+	},
+
+	// version 2.0.6
+
+	"toolbarDockBottom": {
+		"message": "Dock toolbar to the bottom of the page",
+		"description": "Tooltip for the dock bottom image"
+	},
+
+	"toolbarDockTop": {
+		"message": "Dock toolbar to the top of the page",
+		"description": "Tooltip for the dock top image"
 	}
 
 }

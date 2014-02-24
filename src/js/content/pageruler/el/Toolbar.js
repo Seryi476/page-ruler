@@ -19,7 +19,7 @@ pr.el.Toolbar = pr.cls(
 			'div',
 			{
 				'id':	'toolbar',
-				'cls':	'top'
+				'cls':	this.position
 			},
 			{
 				click: function(e) {
@@ -39,6 +39,7 @@ pr.el.Toolbar = pr.cls(
 
 		// create contents
 		var closeContainer			= this.generateCloseContainer();
+		var dockContainer			= this.generateDockContainer();
 		var elementModeContainer	= this.generateElementModeToggleContainer();
 		var dimensionsContainer		= this.generateDimensionsContainer();
 		var positionContainer		= this.generatePositionContainer();
@@ -47,6 +48,7 @@ pr.el.Toolbar = pr.cls(
 		// add contents to container
 		pr.El.appendEl(container, [
 			closeContainer,
+			dockContainer,
 			elementModeContainer,
 			dimensionsContainer,
 			positionContainer,
@@ -65,8 +67,17 @@ pr.el.Toolbar = pr.cls(
 		// this is so that the page shift on the body doesn't apply to the toolbar
 		pr.El.appendEl(document.documentElement, this.dom);
 
-		// shift down page
-		this.shiftPageDown(this.height);
+		// set the toolbar dock position from last time
+		chrome.runtime.sendMessage(
+			{
+				action:	'getDockPosition'
+			},
+			function(position) {
+
+				_this.setDockPosition(position);
+
+			}
+		);
 
 	},
 	{
@@ -168,22 +179,43 @@ pr.el.Toolbar = pr.cls(
 		},
 
 		/**
-		 * Shifts the page down based on the height of the toolbar
+		 * Shifts the page so that the toolbar does not overlap it
 		 */
-		shiftPageDown: function(height) {
+		shiftPage: function(height) {
 
-			var cssTransform = 'transform' in document.body.style ? 'transform' : '-webkit-transform';
-			document.body.style.setProperty(cssTransform, 'translateY(' + pr.Util.px(height) + ')', 'important');
+			// reset any previous shifts
+			this.unshiftPage();
+
+			// auto calculate height if not specified
+			height = height || this.height + (this.elementMode ? this.elementToolbar.height : 0);
+
+			// toolbar in top dock position
+			if (this.position === 'top') {
+
+				var cssTransform = 'transform' in document.body.style ? 'transform' : '-webkit-transform';
+				document.body.style.setProperty(cssTransform, 'translateY(' + pr.Util.px(height) + ')', 'important');
+
+			}
+			// toolbar in bottom dock position
+			else {
+
+				document.body.style.setProperty('margin-bottom', pr.Util.px(height), 'important');
+
+			}
 
 		},
 
 		/**
-		 * Shifts the page back up to it's original position
+		 * Resets the page shift so it goes back to it's original position once the toolbar is removed
 		 */
-		shiftPageUp: function() {
+		unshiftPage: function() {
 
+			// remove css transform from 'top' dock
 			var cssTransform = 'transform' in document.body.style ? 'transform' : '-webkit-transform';
 			document.body.style.removeProperty(cssTransform);
+
+			// remove margin-bottom from bottom dock
+			document.body.style.removeProperty('margin-bottom');
 
 		},
 
@@ -472,6 +504,84 @@ pr.el.Toolbar = pr.cls(
 
 			// return container
 			return container;
+
+		},
+
+		/**
+		 * Generates the container for the element mode toggle
+		 * @returns {HTMLElement}
+		 */
+		generateDockContainer: function() {
+
+			var _this = this;
+
+			// create container
+			var container	= pr.El.createEl('div', {
+				'id':		'toolbar-dock-container',
+				'class':	['container', 'dock-container']
+			});
+
+			// create dock button
+			this.els.dock = pr.El.createEl(
+				'img',
+				{
+					'id':		'toolbar-dock',
+					'src':		chrome.extension.getURL("images/dock-bottom.png"),
+					'title':	pr.Util.locale('toolbarDockBottom', 'lowercase')
+				},
+				{
+					'click': function(e) {
+
+						_this.setDockPosition(_this.position === 'top' ? 'bottom' : 'top', true);
+					}
+				}
+			);
+
+			// add the label and input to the container
+			pr.El.appendEl(container, [
+				this.els.dock
+			]);
+
+			// return container
+			return container;
+
+		},
+
+		setDockPosition: function(position, save) {
+
+			// make sure position is valid
+			if (position !== 'top' && position !== 'bottom') {
+				return;
+			}
+
+			// save old position for convenience
+			var oldPosition = position === 'top' ? 'bottom' : 'top';
+
+			// remove old dock class
+			pr.El.removeClass(this.dom, 'page-ruler-' + oldPosition);
+
+			// set new dock position
+			this.position = position;
+
+			// add new dock class
+			pr.El.addClass(this.dom, 'page-ruler-' + position);
+
+			// change dock image
+			this.els.dock.setAttribute('src', chrome.extension.getURL('images/dock-' + oldPosition + '.png'));
+
+			// change dock image title
+			this.els.dock.setAttribute('title', pr.Util.locale('toolbarDock' + (oldPosition === 'top' ? 'Top' : 'Bottom'), 'lowercase'));
+
+			// re-shift page
+			this.shiftPage();
+
+			// save position
+			if (!!save) {
+				chrome.runtime.sendMessage({
+					action:		'setDockPosition',
+					position:	position
+				});
+			}
 
 		},
 

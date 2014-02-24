@@ -65,7 +65,7 @@ window.__PageRuler = {
 	disable: function() {
 
 		// shift page back up
-		this.elements.toolbar.shiftPageUp();
+		this.elements.toolbar.unshiftPage();
 
 		// unregister all listeners
 		this.El.removeListeners();
