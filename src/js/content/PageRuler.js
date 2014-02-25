@@ -53,6 +53,101 @@ window.__PageRuler = {
 			_this.Dimensions.update();
 		});
 
+		// register keyboard movement events
+		this.El.registerListener(window, 'keydown', function(e) {
+
+			// only if key moving is enabled
+			if (_this.keyMoving) {
+
+				// ctrl = expand
+				// ctrl+alt = shrink
+				// shift = move 10 pixels instead of 1
+
+				// set the modifier via the shift key
+				var modifier = e.shiftKey && 10 || 1;
+
+				var action = (e.ctrlKey || e.metaKey) ? (e.altKey ? 'shrink' : 'expand') : 'move';
+
+				// define actions for each key
+				var actions = {
+					up: {
+						move: function() {
+							_this.elements.ruler.setTop(_this.elements.ruler.top - modifier);
+						},
+						expand: function() {
+							_this.elements.ruler.setTop(_this.elements.ruler.top - modifier);
+							_this.elements.ruler.setHeight(_this.elements.ruler.height + modifier);
+						},
+						shrink: function() {
+							_this.elements.ruler.setHeight(_this.elements.ruler.height - modifier);
+						}
+					},
+					down: {
+						move: function() {
+							_this.elements.ruler.setTop(_this.elements.ruler.top + modifier);
+						},
+						expand: function() {
+							_this.elements.ruler.setBottom(_this.elements.ruler.bottom + modifier);
+							_this.elements.ruler.setHeight(_this.elements.ruler.height + modifier);
+						},
+						shrink: function() {
+							_this.elements.ruler.setTop(_this.elements.ruler.top + modifier);
+							_this.elements.ruler.setHeight(_this.elements.ruler.height - modifier);
+						}
+					},
+					left: {
+						move: function() {
+							_this.elements.ruler.setLeft(_this.elements.ruler.left - modifier);
+						},
+						expand: function() {
+							_this.elements.ruler.setLeft(_this.elements.ruler.left - modifier);
+							_this.elements.ruler.setWidth(_this.elements.ruler.width + modifier);
+						},
+						shrink: function() {
+							_this.elements.ruler.setWidth(_this.elements.ruler.width - modifier);
+						}
+					},
+					right: {
+						move: function() {
+							_this.elements.ruler.setLeft(_this.elements.ruler.left + modifier);
+						},
+						expand: function() {
+							_this.elements.ruler.setRight(_this.elements.ruler.right + modifier);
+							_this.elements.ruler.setWidth(_this.elements.ruler.width + modifier);
+						},
+						shrink: function() {
+							_this.elements.ruler.setLeft(_this.elements.ruler.left + modifier);
+							_this.elements.ruler.setWidth(_this.elements.ruler.width - modifier);
+						}
+					}
+				};
+
+				// keycoed map for actions
+				var keyMap = {
+					'38':	'up',
+					'40':	'down',
+					'37':	'left',
+					'39':	'right'
+				};
+
+				// if action exists for pressed key
+				if (keyMap.hasOwnProperty(String(e.keyCode))) {
+
+					// intercept any other actions for this combination
+					e.preventDefault();
+
+					// get the key actions
+					var key = keyMap[e.keyCode];
+
+					// run the action
+					actions[key][action]();
+
+				}
+
+			}
+
+		});
+
 		// set active state
 		this.active = true;
 

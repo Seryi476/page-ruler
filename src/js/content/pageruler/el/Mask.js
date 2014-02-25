@@ -27,6 +27,10 @@ pr.el.Mask = pr.cls(
 			_this.dom.style.setProperty('width', pr.Util.px(width), 'important');
 			_this.dom.style.setProperty('height', pr.Util.px(height), 'important');
 		});
+
+		pr.El.registerListener(this.dom, 'mousedown', function() {
+			pr.elements.toolbar.blurInputs();
+		});
 		
 	},
 	{

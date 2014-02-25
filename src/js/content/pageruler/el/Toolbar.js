@@ -157,6 +157,24 @@ pr.el.Toolbar = pr.cls(
 			// keypress listener
 			pr.El.registerListener(this.els[id], 'keydown', function(e) {
 
+				// if shift key and up or down change value by 10
+				if (e.shiftKey && (e.keyCode === 38 || e.keyCode === 40)) {
+
+					e.preventDefault();
+
+					// up
+					if (e.keyCode === 38) {
+						this.value = parseInt(this.value, 10) + 10;
+					}
+					// down
+					else if (e.keyCode === 40) {
+						this.value = parseInt(this.value, 10) - 10;
+					}
+
+					changeListener.call(this, e);
+
+				}
+
 				// if enter is pressed
 				if (e.keyCode === 13) {
 
@@ -165,6 +183,16 @@ pr.el.Toolbar = pr.cls(
 
 				}
 
+			});
+
+			// focus listener
+			pr.El.registerListener(this.els[id], 'focus', function(e) {
+				pr.keyMoving = false;
+			});
+
+			// blur listener
+			pr.El.registerListener(this.els[id], 'blur', function(e) {
+				pr.keyMoving = true;
 			});
 
 			// add label and input to container
@@ -672,6 +700,20 @@ pr.el.Toolbar = pr.cls(
 			this.elementToolbar.hide();
 
 			document.getElementById('page-ruler-toolbar-element-toggle-label').innerText = pr.Util.locale('toolbarEnableElementMode');
+
+		},
+
+		/**
+		 * Blurs all inputs to remove their focus
+		 */
+		blurInputs: function() {
+
+			this.els.width.blur();
+			this.els.height.blur();
+			this.els.top.blur();
+			this.els.bottom.blur();
+			this.els.left.blur();
+			this.els.right.blur();
 
 		}
 

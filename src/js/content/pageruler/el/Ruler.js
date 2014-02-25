@@ -32,6 +32,9 @@ pr.el.Ruler = pr.cls(
 			// we don't want to interact with any other elements
 			e.stopPropagation();
 			e.preventDefault();
+
+			// blur all toolbar inputs
+			pr.elements.toolbar.blurInputs();
 			
 			// set moving attributes
 			_this.movingLeft	= true;
@@ -246,6 +249,12 @@ pr.el.Ruler = pr.cls(
 		 * @type {number}
 		 */
 		gapTop:		null,
+
+		/**
+		 * Flag to indicate if we are accepting key movements
+		 * When the number inputs are focused we will let them do their own thing
+		 */
+		keyMoving:	true,
 
 		/**
 		 * Creates the ruler dom elements

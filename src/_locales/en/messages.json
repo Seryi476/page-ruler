@@ -216,7 +216,7 @@
 	// version 2.0.4
 
 	"updateTip": {
-		"message": "Tip: Use the Alt+P shortcut to enable and disable Page Ruler, or assign a different shortcut from the Keyboard Shortcuts section in the Extensions tab",
+		"message": "<b>Extra Tip:</b> Use the Alt+P shortcut to enable and disable Page Ruler, or assign a different shortcut from the Keyboard Shortcuts section in the Extensions tab",
 		"description": "Message informing users about the shortcut key"
 	},
 
@@ -230,6 +230,76 @@
 	"toolbarDockTop": {
 		"message": "Dock toolbar to the top of the page",
 		"description": "Tooltip for the dock top image"
+	},
+
+	"updateKeyBoardShortcuts": {
+		"message": "Keyboard Shortcuts",
+		"description": "The title for the keyboard shortcuts section"
+	},
+
+	"updateKeyboardShortcutsToggle": {
+		"message": "<b>Alt + P:</b> Enable / Disable Page Ruler",
+		"description": "The Alt + P shortcut description"
+	},
+
+	"updateKeyboardShortcutsRuler": {
+		"message": "Ruler",
+		"description": "Title for the ruler arrow keys section"
+	},
+
+	"updateKeyboardShortcutsRulerKeys": {
+		"message": "<b>Arrow keys:</b> Move the ruler by 1 pixel in any direction",
+		"description": "Arrow keys shortcut description"
+	},
+
+	"updateKeyboardShortcutsRulerShift": {
+		"message": "<b>+ Shift:</b> Move the ruler by 10 pixels",
+		"description": "Arrow keys + Shift shortcut description"
+	},
+
+	"updateKeyboardShortcutsRulerCtrl": {
+		"message": "<b>+ Ctrl (Command):</b> Expand the ruler outwards by 1 pixel",
+		"description": "Arrow keys + Ctrl shortcut description"
+	},
+
+	"updateKeyboardShortcutsRulerShiftCtrl": {
+		"message": "<b>+ Shift + Ctrl (Command):</b> Expand the ruler outwards by 10 pixels",
+		"description": "Arrow keys + Shift + Ctrl shortcut description"
+	},
+
+	"updateKeyboardShortcutsRulerCtrlAlt": {
+		"message": "<b>+ Ctrl (Command) + Alt:</b> Shrink the ruler inwards by 1 pixel",
+		"description": "Arrow keys _Ctrl + Alt shortcut description"
+	},
+
+	"updateKeyboardShortcutsRulerShiftCtrlAl": {
+		"message": "<b>+ Shift + Ctrl (Command) + Alt:</b> Shrink the ruler inwards by 10 pixels",
+		"description": "Arrow keys + Shift + Alt shortcut description"
+	},
+
+	"updateKeyboardShortcutsToolbar": {
+		"message": "Toolbar Inputs",
+		"description": "Title for toolbar inputs shortcut keys section"
+	},
+
+	"updateKeyboardShortcutsToolbarUp": {
+		"message": "<b>Up Key:</b> Increase the value by 1",
+		"description": "Up key input shortcut description"
+	},
+
+	"updateKeyboardShortcutsToolbarUpShift": {
+		"message": "<b>+ Shift:</b> Increase the value by 10",
+		"description": "Up key + Shift input shortcut description"
+	},
+
+	"updateKeyboardShortcutsToolbarDown": {
+		"message": "<b>Down Key:</b> Decrease the value by 1",
+		"description": "Down key input shortcut description"
+	},
+
+	"updateKeyboardShortcutsToolbarDownShift": {
+		"message": "<b>+ Shift:</b> Decrease the value by 10",
+		"description": "Down key + Shift input shortcut description"
 	}
 
 }

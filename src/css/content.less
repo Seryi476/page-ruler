@@ -51,8 +51,9 @@ input {
 			.appearance(~'checkbox !important');
 		}
 		&[type=number] {
-			&::-webkit-inner-spin-button, &::-webkit-outer-spin-button {
-				-webkit-appearance:	none !important;
+			&::-webkit-inner-spin-button,
+			&::-webkit-outer-spin-button {
+				.appearance(~'none !important');
 				cursor:				pointer !important;
 				display:			block !important;
 				width:				14px !important;
@@ -63,7 +64,8 @@ input {
 				height:				21px !important;
 			}
 
-			&::-webkit-inner-spin-button:hover, &::-webkit-outer-spin-button:hover {
+			&::-webkit-inner-spin-button:hover,
+			&::-webkit-outer-spin-button:hover {
 				color:	@toolbar-color !important;
 			}
 
@@ -84,7 +86,7 @@ input {
 
 			&::-webkit-inner-spin-button:after, &::-webkit-outer-spin-button:after {
 				bottom:				-2px !important;
-				-webkit-transform:	rotate(180deg) !important;
+				.transform(~'rotate(180deg) !important');
 			}
 		}
 	}
