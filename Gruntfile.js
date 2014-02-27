@@ -97,7 +97,7 @@ module.exports = function (grunt) {
 		},
 
 		uglify: {
-			background: {
+			background_dev: {
 				options: {
 					mangle: false,
 					compress: false,
@@ -107,11 +107,31 @@ module.exports = function (grunt) {
 					'build/background.js': 'src/js/background/**/*.js'
 				}
 			},
-			content: {
+			content_dev: {
 				options: {
 					mangle: false,
 					compress: false,
 					beautify: true
+				},
+				files: {
+					'build/content.js': 'src/js/content/**/*.js'
+				}
+			},
+			background_build: {
+				options: {
+					mangle: false,
+					compress: true,
+					beautify: false
+				},
+				files: {
+					'build/background.js': 'src/js/background/**/*.js'
+				}
+			},
+			content_build: {
+				options: {
+					mangle: false,
+					compress: true,
+					beautify: false
 				},
 				files: {
 					'build/content.js': 'src/js/content/**/*.js'
@@ -176,14 +196,14 @@ module.exports = function (grunt) {
 				files: [
 					'src/js/content/**'
 				],
-				tasks: ['uglify:content']
+				tasks: ['uglify:content_dev']
 			},
 
 			backgroundjs: {
 				files: [
 					'src/js/background/**'
 				],
-				tasks: ['uglify:background']
+				tasks: ['uglify:background_dev']
 			},
 
 			contentcss: {
@@ -207,6 +227,18 @@ module.exports = function (grunt) {
 	// autoload tasks
 	require('load-grunt-tasks')(grunt, {scope: 'devDependencies'});
 
+	// build pretty js
+	grunt.registerTask('js_dev', [
+		'uglify:background_dev',
+		'uglify:content_dev'
+	]);
+
+	// build ugly js
+	grunt.registerTask('js_build', [
+		'uglify:background_build',
+		'uglify:content_build'
+	]);
+
 	/*
 	 * Initialisation task
 	 * Removes previous builds and generates a new one
@@ -214,12 +246,15 @@ module.exports = function (grunt) {
 	grunt.registerTask('init', [
 		'clean',
 		'copy',
-		'uglify',
+		'js_dev',
 		'less'
 	]);
 
 	grunt.registerTask('publish', [
-		//'init',
+		'clean',
+		'copy',
+		'js_build',
+		'less',
 		'zip'
 	]);
 

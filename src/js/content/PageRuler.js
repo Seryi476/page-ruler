@@ -68,56 +68,70 @@ window.__PageRuler = {
 
 				var action = (e.ctrlKey || e.metaKey) ? (e.altKey ? 'shrink' : 'expand') : 'move';
 
+				var ruler = _this.elements.ruler;
+
 				// define actions for each key
 				var actions = {
 					up: {
 						move: function() {
-							_this.elements.ruler.setTop(_this.elements.ruler.top - modifier);
+							ruler.setTop(ruler.top - modifier);
 						},
 						expand: function() {
-							_this.elements.ruler.setTop(_this.elements.ruler.top - modifier);
-							_this.elements.ruler.setHeight(_this.elements.ruler.height + modifier);
+							ruler.setTop(ruler.top - modifier);
+							ruler.setHeight(ruler.height + modifier);
 						},
 						shrink: function() {
-							_this.elements.ruler.setHeight(_this.elements.ruler.height - modifier);
+							// don't shrink if height is 0
+							if (ruler.height > 0) {
+								ruler.setHeight(ruler.height - modifier);
+							}
 						}
 					},
 					down: {
 						move: function() {
-							_this.elements.ruler.setTop(_this.elements.ruler.top + modifier);
+							ruler.setTop(ruler.top + modifier);
 						},
 						expand: function() {
-							_this.elements.ruler.setBottom(_this.elements.ruler.bottom + modifier);
-							_this.elements.ruler.setHeight(_this.elements.ruler.height + modifier);
+							ruler.setBottom(_this.elements.ruler.bottom + modifier);
+							ruler.setHeight(_this.elements.ruler.height + modifier);
 						},
 						shrink: function() {
-							_this.elements.ruler.setTop(_this.elements.ruler.top + modifier);
-							_this.elements.ruler.setHeight(_this.elements.ruler.height - modifier);
+							// don't shrink if height is 0
+							if (ruler.height > 0) {
+								ruler.ruler.setTop(ruler.top + modifier);
+								ruler.ruler.setHeight(ruler.height - modifier);
+							}
 						}
 					},
 					left: {
 						move: function() {
-							_this.elements.ruler.setLeft(_this.elements.ruler.left - modifier);
+							ruler.setLeft(_this.elements.ruler.left - modifier);
 						},
 						expand: function() {
-							_this.elements.ruler.setLeft(_this.elements.ruler.left - modifier);
-							_this.elements.ruler.setWidth(_this.elements.ruler.width + modifier);
+							ruler.setLeft(ruler.left - modifier);
+							ruler.setWidth(ruler.width + modifier);
 						},
 						shrink: function() {
-							_this.elements.ruler.setWidth(_this.elements.ruler.width - modifier);
+							// don't shrink if width is 0
+							if (ruler.width > 0) {
+								ruler.setWidth(ruler.width - modifier);
+							}
 						}
 					},
 					right: {
 						move: function() {
-							_this.elements.ruler.setLeft(_this.elements.ruler.left + modifier);
+							ruler.setLeft(ruler.left + modifier);
 						},
 						expand: function() {
-							_this.elements.ruler.setRight(_this.elements.ruler.right + modifier);
-							_this.elements.ruler.setWidth(_this.elements.ruler.width + modifier);
+							ruler.setRight(ruler.right + modifier);
+							ruler.setWidth(ruler.width + modifier);
 						},
 						shrink: function() {
-							_this.elements.ruler.setLeft(_this.elements.ruler.left + modifier);
-							_this.elements.ruler.setWidth(_this.elements.ruler.width - modifier);
+							// don't shrink if width is 0
+							if (ruler.width > 0) {
+								ruler.setLeft(ruler.left + modifier);
+								ruler.setWidth(ruler.width - modifier);
+							}
 						}
 					}
 				};
