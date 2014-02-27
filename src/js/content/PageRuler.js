@@ -57,7 +57,7 @@ window.__PageRuler = {
 		this.El.registerListener(window, 'keydown', function(e) {
 
 			// only if key moving is enabled
-			if (_this.keyMoving) {
+			if (_this.elements.ruler.keyMoving) {
 
 				// ctrl = expand
 				// ctrl+alt = shrink

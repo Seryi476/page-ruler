@@ -33,8 +33,8 @@ pr.el.Ruler = pr.cls(
 			e.stopPropagation();
 			e.preventDefault();
 
-			// blur all toolbar inputs
-			pr.elements.toolbar.blurInputs();
+			// blur all focused elements
+			document.activeElement.blur();
 			
 			// set moving attributes
 			_this.movingLeft	= true;

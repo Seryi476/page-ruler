@@ -29,7 +29,7 @@ pr.el.Mask = pr.cls(
 		});
 
 		pr.El.registerListener(this.dom, 'mousedown', function() {
-			pr.elements.toolbar.blurInputs();
+			document.activeElement.blur();
 		});
 		
 	},
