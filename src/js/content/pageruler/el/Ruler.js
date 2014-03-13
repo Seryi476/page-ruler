@@ -10,8 +10,9 @@ pr.el.Ruler = pr.cls(
 	 * Class constructor
 	 *
 	 * @param {PageRuler.el.Toolbar} toolbar
+	 * @param {PageRuler.el.Guides} guides
 	 */
-	function(toolbar) {
+	function(toolbar, guides) {
 
 		// reference to this for callbacks
 		var _this = this;
@@ -19,6 +20,9 @@ pr.el.Ruler = pr.cls(
 		// set toolbar reference and back reference in the toolbar
 		this.toolbar = toolbar;
 		this.toolbar.ruler = this;
+
+		// set guides reference
+		this.guides = guides;
 
 		// create dom
 		this.createDom();
@@ -85,6 +89,8 @@ pr.el.Ruler = pr.cls(
                 _this.resizingRight     = true;
                 _this.resizingBottom    = true;
 
+				_this.show();
+
             }
 
         });
@@ -121,11 +127,13 @@ pr.el.Ruler = pr.cls(
 
 				pr.elements.mask.dom.style.setProperty('display', 'none', 'important');
 				_this.ruler.style.setProperty('display', 'none', 'important');
+				_this.guides.hide();
 
 				_this.toolbar.elementToolbar.setElement(document.elementFromPoint(mouseX, mouseY));
 
 				pr.elements.mask.dom.style.removeProperty('display');
 				_this.ruler.style.removeProperty('display');
+				_this.guides.show();
 
 			}
 			else {
@@ -149,6 +157,12 @@ pr.el.Ruler = pr.cls(
 		 * @type {HTMLElement}
 		 */
         ruler:      null,
+
+		/**
+		 * Reference to the guides object
+		 * @type {PageRuler.el.Guides}
+		 */
+		guides:		null,
 
 		/**
 		 * Container for the resize elements
@@ -314,6 +328,24 @@ pr.el.Ruler = pr.cls(
         },
 
 		/**
+		 * Shows the ruler
+		 */
+		show: function() {
+
+			this.ruler.style.removeProperty('display');
+
+		},
+
+		/**
+		 * Hides the ruler
+		 */
+		hide: function() {
+
+			this.ruler.style.setProperty('display', 'none', 'important');
+
+		},
+
+		/**
 		 * Sets the color of the ruler
 		 * @param {string} hex		The hex color value
 		 * @param {booleab} save	Whether to save the color for next time
@@ -331,6 +363,9 @@ pr.el.Ruler = pr.cls(
 			this.resizeElements.topRight.setColor(hex);
 			this.resizeElements.bottomLeft.setColor(hex);
 			this.resizeElements.bottomRight.setColor(hex);
+
+			// set the border colour on the guides
+			this.guides.setColor(hex);
 
 			// set the color input value on the toolbar
 			this.toolbar.setColor(hex);
@@ -388,6 +423,8 @@ pr.el.Ruler = pr.cls(
 			this.ruler.style.top		= pr.Util.px(this.top);
 			this.ruler.style.left		= pr.Util.px(this.left);
 
+			this.hide();
+
 		},
 
 		/**
@@ -429,6 +466,9 @@ pr.el.Ruler = pr.cls(
 			
 			// update toolbar
 			this.toolbar.setLeft(left);
+
+			// update the guides
+			this.guides.setSizes();
 
 		},
 
@@ -472,6 +512,9 @@ pr.el.Ruler = pr.cls(
 			// update toolbar
 			this.toolbar.setTop(top);
 
+			// update the guides
+			this.guides.setSizes();
+
 		},
 
 		/**
@@ -512,6 +555,9 @@ pr.el.Ruler = pr.cls(
 			// update toolbar
 			this.toolbar.setRight(right);
 
+			// update the guides
+			this.guides.setSizes();
+
 		},
 
 		/**
@@ -547,6 +593,9 @@ pr.el.Ruler = pr.cls(
 			
 			// update toolbar
 			this.toolbar.setBottom(bottom);
+
+			// update the guides
+			this.guides.setSizes();
 
 		},
 
@@ -885,6 +934,9 @@ pr.el.Ruler = pr.cls(
 			// update toolbar
 			this.toolbar.setWidth(width);
 
+			// update the guides
+			this.guides.setSizes();
+
 		},
 
 		/**
@@ -918,6 +970,9 @@ pr.el.Ruler = pr.cls(
 			
 			// update toolbar
 			this.toolbar.setHeight(height);
+
+			// update the guides
+			this.guides.setSizes();
 
 		}
 

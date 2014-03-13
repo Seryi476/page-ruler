@@ -20,7 +20,8 @@ window.__PageRuler = {
 	elements:	{
 		toolbar:	null,
 		mask:		null,
-		ruler:		null
+		ruler:		null,
+		guides:		null
 	},
 
 	/**
@@ -45,8 +46,11 @@ window.__PageRuler = {
 		// create mask
 		this.elements.mask = new this.el.Mask();
 
+		// create guides
+		this.elements.guides = new this.el.Guides();
+
         // create ruler
-        this.elements.ruler = new this.el.Ruler(this.elements.toolbar);
+        this.elements.ruler = new this.el.Ruler(this.elements.toolbar, this.elements.guides);
 
 		// update page dimensions on resize
 		this.El.registerListener(window, 'resize', function() {
@@ -74,7 +78,7 @@ window.__PageRuler = {
 				var actions = {
 					up: {
 						move: function() {
-							ruler.setTop(ruler.top - modifier);
+							ruler.setTop(ruler.top - modifier, true);
 						},
 						expand: function() {
 							ruler.setTop(ruler.top - modifier);
@@ -89,7 +93,7 @@ window.__PageRuler = {
 					},
 					down: {
 						move: function() {
-							ruler.setTop(ruler.top + modifier);
+							ruler.setTop(ruler.top + modifier, true);
 						},
 						expand: function() {
 							ruler.setBottom(_this.elements.ruler.bottom + modifier);
@@ -98,14 +102,14 @@ window.__PageRuler = {
 						shrink: function() {
 							// don't shrink if height is 0
 							if (ruler.height > 0) {
-								ruler.ruler.setTop(ruler.top + modifier);
-								ruler.ruler.setHeight(ruler.height - modifier);
+								ruler.setTop(ruler.top + modifier);
+								ruler.setHeight(ruler.height - modifier);
 							}
 						}
 					},
 					left: {
 						move: function() {
-							ruler.setLeft(_this.elements.ruler.left - modifier);
+							ruler.setLeft(_this.elements.ruler.left - modifier, true);
 						},
 						expand: function() {
 							ruler.setLeft(ruler.left - modifier);
@@ -120,7 +124,7 @@ window.__PageRuler = {
 					},
 					right: {
 						move: function() {
-							ruler.setLeft(ruler.left + modifier);
+							ruler.setLeft(ruler.left + modifier, true);
 						},
 						expand: function() {
 							ruler.setRight(ruler.right + modifier);

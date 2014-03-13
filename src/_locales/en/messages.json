@@ -300,6 +300,13 @@
 	"updateKeyboardShortcutsToolbarDownShift": {
 		"message": "<b>+ Shift:</b> Decrease the value by 10",
 		"description": "Down key + Shift input shortcut description"
+	},
+
+	// version 2.0.7
+
+	"toolbarGuides": {
+		"message":	"Show Guides",
+		"description": "Label for the show guides toggle in the toolbar"
 	}
 
 }

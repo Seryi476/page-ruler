@@ -44,6 +44,7 @@ pr.el.Toolbar = pr.cls(
 		var dimensionsContainer		= this.generateDimensionsContainer();
 		var positionContainer		= this.generatePositionContainer();
 		var colorContainer			= this.generateColorContainer();
+		var guidesContainer			= this.generateGuidesContainer();
 
 		// add contents to container
 		pr.El.appendEl(container, [
@@ -52,7 +53,8 @@ pr.el.Toolbar = pr.cls(
 			elementModeContainer,
 			dimensionsContainer,
 			positionContainer,
-			colorContainer
+			colorContainer,
+			guidesContainer
 		]);
 
 		this.elementToolbar = new pr.el.ElementToolbar(this);
@@ -75,6 +77,29 @@ pr.el.Toolbar = pr.cls(
 			function(position) {
 
 				_this.setDockPosition(position);
+
+			}
+		);
+
+		// set the guides visiblity
+		chrome.runtime.sendMessage(
+			{
+				action:	'getGuides'
+			},
+			function(visible) {
+
+				// set guides visibility
+				pr.elements.guides.setVisible(visible, false);
+
+				// but still hide them until the ruler has been activated
+				pr.elements.guides.hide();
+
+				// if not visible then also change the toggle
+				if (!visible) {
+
+					_this.els.guides.checked = false;
+
+				}
 
 			}
 		);
@@ -491,6 +516,91 @@ pr.el.Toolbar = pr.cls(
 
 			// return container
 			return container;
+
+		},
+
+		/**
+		 * Generates the container for the guides toggle
+		 * @returns {HTMLElement}
+		 */
+		generateGuidesContainer: function() {
+
+			// create container
+			var guidesContainer = pr.El.createEl('div', {
+				'id':	'toolbar-guides-container',
+				'cls':	'container'
+			});
+
+			// create label
+			var label = pr.El.createEl('label', {
+				'id':	'toolbar-guides-label',
+				'for':	'toolbar-guides-input'
+			}, {}, pr.Util.locale('toolbarGuides') + ':');
+
+			var lang = (navigator.language || '').split('-')[0];
+			if (!!lang) {
+				lang = 'lang_' + lang;
+			}
+
+			// create toggle element
+			var toggle = pr.El.createEl('div', {
+				'id':	'toolbar-guides-toggle',
+				'cls':	'checkbox-toggle ' + lang
+			});
+
+			// create checkbox element
+			var input = pr.El.createEl('input', {
+				'id':		'toolbar-guides-input',
+				'type':		'checkbox',
+				'checked':	true
+			}, {
+				'change': function(e) {
+
+					pr.elements.guides.setVisible(this.checked, true);
+
+				}
+			});
+
+			// set reference to checkbox
+			this.els.guides = input;
+
+			// create toggle label
+			var toggleLabel = pr.El.createEl('label', {
+				'id':	'toolbar-guides-toggle-label',
+				'for':	'toolbar-guides-input'
+			});
+
+			// create label inner
+			var labelInner = pr.El.createEl('div', {
+				'id':		'toolbar-guides-label-inner',
+				'class':	'inner'
+			});
+
+			// create label switch
+			var labelSwitch = pr.El.createEl('div', {
+				'id':		'toolbar-guides-label-switch',
+				'class':	'switch ' + lang
+			});
+
+			// add label contents
+			pr.El.appendEl(toggleLabel, [
+				labelInner,
+				labelSwitch
+			]);
+
+			// add toggle contents
+			pr.El.appendEl(toggle, [
+				input,
+				toggleLabel
+			]);
+
+			// add container contents
+			pr.El.appendEl(guidesContainer, [
+				label,
+				toggle
+			]);
+
+			return guidesContainer;
 
 		},
 

@@ -523,7 +523,7 @@ pr.el.ElementToolbar = pr.cls(
 			// create toggle element
 			var toggle = pr.El.createEl('div', {
 				'id':	'element-toolbar-tracking-mode-toggle',
-				'cls':	'tracking-mode-toggle ' + lang
+				'cls':	'checkbox-toggle ' + lang
 			});
 
 			// create checkbox element
@@ -747,6 +747,9 @@ pr.el.ElementToolbar = pr.cls(
 			this.setNavigation('down', target);
 			this.setNavigation('previous', target);
 			this.setNavigation('next', target);
+
+			// update guides
+			pr.elements.guides.setSizes();
 
 		}
 

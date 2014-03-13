@@ -383,6 +383,37 @@ chrome.runtime.onMessage.addListener(function(message, sender, sendResponse) {
 
 			break;
 
+		// sets whether guides are visible
+		case 'setGuides':
+
+			console.log('saving guides visiblity ' + message.visible);
+
+			PageRuler.Analytics.trackEvent('Settings', 'Guides', message.visible && 'On' || 'Off');
+
+			chrome.storage.sync.set({
+				'guides':	message.visible
+			});
+
+			break;
+
+		// gets the guides are visibility
+		case 'getGuides':
+
+			console.log('requesting guides visibility');
+
+			chrome.storage.sync.get('guides', function(items) {
+
+				// get colour or default to top
+				var visiblity = items.hasOwnProperty('guides') ? items.guides : true;
+
+				console.log('guides visibility requested: ' + visiblity);
+
+				sendResponse(visiblity);
+
+			});
+
+			break;
+
 		// track an event
 		case 'trackEvent':
 
