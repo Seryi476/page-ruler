@@ -41,6 +41,9 @@ pr.el.Resize = pr.cls(
 
 		// add mousedown listener - this will initialise the resizing
 		pr.El.registerListener(this.dom, 'mousedown', function(e) {
+
+			var mouseX = pr.Mouse.getX(e);
+			var mouseY = pr.Mouse.getY(e);
 			
 			// we don't want to interact with any other elements
 			e.stopPropagation();
@@ -51,6 +54,23 @@ pr.el.Resize = pr.cls(
 			ruler.resizingTop		= directions.top;
 			ruler.resizingBottom	= directions.bottom;
 			ruler.resizingRight		= directions.right;
+
+			// set resizing offsets
+			if (directions.left) {
+				ruler.resizingOffsetLeft = mouseX - ruler.left;
+			}
+
+			if (directions.top) {
+				ruler.resizingOffsetTop = mouseY - ruler.top;
+			}
+
+			if (directions.bottom) {
+				ruler.resizingOffsetBottom = ruler.bottom - mouseY;
+			}
+
+			if (directions.right) {
+				ruler.resizingOffsetRight = ruler.right - mouseX;
+			}
 			
 			
 		});
@@ -63,6 +83,12 @@ pr.el.Resize = pr.cls(
 			ruler.resizingTop		= false;
 			ruler.resizingBottom	= false;
 			ruler.resizingRight		= false;
+
+			// reset resizing offsets
+			ruler.resizingOffsetLeft	= 0;
+			ruler.resizingOffsetTop		= 0;
+			ruler.resizingOffsetBottom	= 0;
+			ruler.resizingOffsetRight	= 0;
 			
 		});
 

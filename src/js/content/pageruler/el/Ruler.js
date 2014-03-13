@@ -123,22 +123,29 @@ pr.el.Ruler = pr.cls(
 				var mouseX	= mouseXY.x;
 				var mouseY	= mouseXY.y;
 
-				// hide mask
-
+				// hide mask, ruler and guides so we can get the correct element underneath
 				pr.elements.mask.dom.style.setProperty('display', 'none', 'important');
 				_this.ruler.style.setProperty('display', 'none', 'important');
-				_this.guides.hide();
+				if (_this.guides.visible) {
+					_this.guides.hide();
+				}
 
+				// set the mouseover element
 				_this.toolbar.elementToolbar.setElement(document.elementFromPoint(mouseX, mouseY));
 
+				// show the mask, ruler and element again
 				pr.elements.mask.dom.style.removeProperty('display');
 				_this.ruler.style.removeProperty('display');
-				_this.guides.show();
+				if (_this.guides.visible) {
+					_this.guides.show();
+				}
 
 			}
 			else {
+
 				_this.move(e);
 				_this.resize(e);
+
 			}
 
 		});
@@ -203,6 +210,13 @@ pr.el.Ruler = pr.cls(
 		resizingLeft:	false,
 
 		/**
+		 * Amount of offset to apply when resizing left. This is so when selecting a resize edge the ruler will not
+		 * snap to the mouse position
+		 * @type {number}
+		 */
+		resizingOffsetLeft: 0,
+
+		/**
 		 * The current ruler top position
 		 * @type {number}
 		 */
@@ -213,6 +227,13 @@ pr.el.Ruler = pr.cls(
 		 * @type {boolean}
 		 */
 		resizingTop:	false,
+
+		/**
+		 * Amount of offset to apply when resizing top. This is so when selecting a resize edge the ruler will not
+		 * snap to the mouse position
+		 * @type {number}
+		 */
+		resizingOffsetTop: 0,
 
 		/**
 		 * The current ruler right position
@@ -227,6 +248,13 @@ pr.el.Ruler = pr.cls(
 		resizingRight:	false,
 
 		/**
+		 * Amount of offset to apply when resizing right. This is so when selecting a resize edge the ruler will not
+		 * snap to the mouse position
+		 * @type {number}
+		 */
+		resizingOffsetRight: 0,
+
+		/**
 		 * The current ruler bottom position
 		 * @type {number}
 		 */
@@ -237,6 +265,13 @@ pr.el.Ruler = pr.cls(
 		 * @type {boolean}
 		 */
 		resizingBottom:	false,
+
+		/**
+		 * Amount of offset to apply when resizing bottom. This is so when selecting a resize edge the ruler will not
+		 * snap to the mouse position
+		 * @type {number}
+		 */
+		resizingOffsetBottom: 0,
 
 		/**
 		 * Flag to indicate whether the left position of the ruler is currently being moved
@@ -396,20 +431,24 @@ pr.el.Ruler = pr.cls(
 			this.toolbar.setHeight(this.height);
 			
 			// set attributes
-			this.left			= config.left || 0;
-			this.resizingLeft	= false;
+			this.left				= config.left || 0;
+			this.resizingLeft		= false;
+			this.resizingOffsetLeft	= 0;
 			this.toolbar.setLeft(this.left);
 			
-			this.top			= config.top || 0;
-			this.resizingTop	= false;
+			this.top				= config.top || 0;
+			this.resizingTop		= false;
+			this.resizingOffsetTop	= 0;
 			this.toolbar.setTop(this.top);
 			
-			this.right			= this.left + this.width;
-			this.resizingRight	= false;
+			this.right					= this.left + this.width;
+			this.resizingRight			= false;
+			this.resizingOffsetRight	= 0;
 			this.toolbar.setRight(this.right);
 				
-			this.bottom			= this.top + this.height;
-			this.resizingBottom	= false;
+			this.bottom					= this.top + this.height;
+			this.resizingBottom			= false;
+			this.resizingOffsetBottom	= 0;
 			this.toolbar.setBottom(this.bottom);
 			
 			this.movingLeft		= false;
@@ -737,6 +776,9 @@ pr.el.Ruler = pr.cls(
 						mouseX = pr.Dimensions.pageLeft;
 						
 					}
+
+					// apply resizing offset
+					mouseX -= this.resizingOffsetLeft;
 							
 					// update left
 					this.setLeft(mouseX);
@@ -780,6 +822,9 @@ pr.el.Ruler = pr.cls(
 						mouseX = pr.Dimensions.pageRight;
 						
 					}
+
+					// apply resizing offset
+					mouseX += this.resizingOffsetRight;
 					
 					// update right
 					this.setRight(mouseX);
@@ -824,6 +869,9 @@ pr.el.Ruler = pr.cls(
 						mouseY = pr.Dimensions.pageTop;
 						
 					}
+
+					// apply resizing offset
+					mouseY -= this.resizingOffsetTop;
 					
 					// update top
 					this.setTop(mouseY);
@@ -867,6 +915,9 @@ pr.el.Ruler = pr.cls(
 						mouseY = pr.Dimensions.pageBottom;
 						
 					}
+
+					// apply resizing offset
+					mouseY += this.resizingOffsetBottom;
 					
 					// update bottom
 					this.setBottom(mouseY);
