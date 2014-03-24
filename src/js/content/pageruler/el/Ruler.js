@@ -69,6 +69,8 @@ pr.el.Ruler = pr.cls(
             // if not in element tracking mode or html (scroll bars) are not mousedowned
             if (!_this.toolbar.elementToolbar.tracking && e.target.tagName.toLowerCase() !== 'html') {
 
+				pr.elements.guides.hide();
+
                 // get mouse positions
 				var mouseXY	= pr.Mouse.getXY(e);
 
