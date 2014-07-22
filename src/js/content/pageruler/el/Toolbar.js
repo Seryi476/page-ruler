@@ -40,6 +40,7 @@ pr.el.Toolbar = pr.cls(
 		// create contents
 		var closeContainer			= this.generateCloseContainer();
 		var dockContainer			= this.generateDockContainer();
+		var helpContainer			= this.generateHelpContainer();
 		var elementModeContainer	= this.generateElementModeToggleContainer();
 		var dimensionsContainer		= this.generateDimensionsContainer();
 		var positionContainer		= this.generatePositionContainer();
@@ -50,6 +51,7 @@ pr.el.Toolbar = pr.cls(
 		pr.El.appendEl(container, [
 			closeContainer,
 			dockContainer,
+			helpContainer,
 			elementModeContainer,
 			dimensionsContainer,
 			positionContainer,
@@ -646,7 +648,44 @@ pr.el.Toolbar = pr.cls(
 		},
 
 		/**
-		 * Generates the container for the element mode toggle
+		 * Generates the container for the help button
+		 * @returns {HTMLElement}
+		 */
+		generateHelpContainer: function() {
+
+			// create container
+			var container	= pr.El.createEl('div', {
+				'id':		'toolbar-help-container',
+				'class':	['container', 'help-container']
+			});
+
+			// create dock button
+			this.els.help = pr.El.createEl(
+				'img',
+				{
+					'id':		'toolbar-help',
+					'src':		chrome.extension.getURL("images/help-white.png"),
+					'title':	pr.Util.locale('toolbarHelp', 'lowercase')
+				},
+				{
+					'click': function(e) {
+						window.open(chrome.extension.getURL('update.html') + '#help');
+					}
+				}
+			);
+
+			// add the label and input to the container
+			pr.El.appendEl(container, [
+				this.els.help
+			]);
+
+			// return container
+			return container;
+
+		},
+
+		/**
+		 * Generates the container for the dock button
 		 * @returns {HTMLElement}
 		 */
 		generateDockContainer: function() {

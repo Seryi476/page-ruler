@@ -54,8 +54,11 @@
 	if (location.hash === '#install') {
 		headerText = chrome.i18n.getMessage('updatePageHeaderInstall');
 	}
-	else {
+	else if (location.hash === '#update') {
     	headerText = chrome.i18n.getMessage('updatePageHeader', chrome.runtime.getManifest().version);
+	}
+	else {
+		headerText = chrome.i18n.getMessage('extName');
 	}
 
 	h1.innerHTML = headerText;
