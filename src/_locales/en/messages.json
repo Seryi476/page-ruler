@@ -177,7 +177,7 @@
     },
 
     "updateHistoryTitle": {
-        "message": "What's New?",
+        "message": "Latest Updates",
         "desciption": "Title for the update history section"
     },
 
@@ -313,6 +313,36 @@
 	"toolbarHelp": {
 		"message": "Show help and information",
 		"description": "Lable for the help button in the toolbar"
+	},
+
+	"updateKeyBoardShortcutsGeneral": {
+		"message": "General Shortcuts",
+		"description": "Title for general shortcuts section"
+	},
+
+	"updateReportIssue": {
+		"message": "Report an Issue or Make Suggestion",
+		"description": "Report issue button text"
+	},
+
+	"updateSupportTitle": {
+		"message": "Support Page Ruler",
+		"description": "Support section title"
+	},
+
+	"updateSupportText": {
+		"message": "Page Ruler is and always will be <b>free</b>. If you have a spare moment please support it by leaving a review.",
+		"description": "Support section text"
+	},
+
+	"updateSupportReviewText": {
+		"message": "Leave a Review",
+		"description": "Leave review button text"
+	},
+
+	"updateOtherExtensionsText": {
+		"message": "My Other Extensions",
+		"description": "Other extensions section title"
 	}
 
 }

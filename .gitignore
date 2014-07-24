@@ -2,3 +2,4 @@ node_modules
 build
 .idea
 pageruler.zip
+bower_components

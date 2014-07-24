@@ -1,115 +1,115 @@
+@bootstrap-dir: "../../bower_components/bootstrap/less/";
+
+// Core variables and mixins
+@import "@{bootstrap-dir}variables.less";
+@import "@{bootstrap-dir}mixins.less";
+
+//
+// Bootstrap variable overrides
+// --------------------
+
+@icon-font-path: 'fonts/';
+@border-radius-base: 0px;
+
+// Reset
+@import "@{bootstrap-dir}normalize.less";
+//@import "@{bootstrap-dir}print.less";
+
+// Core CSS
+@import "@{bootstrap-dir}scaffolding.less";
+@import "@{bootstrap-dir}type.less";
+//@import "@{bootstrap-dir}code.less";
+@import "@{bootstrap-dir}grid.less";
+//@import "@{bootstrap-dir}tables.less";
+//@import "@{bootstrap-dir}forms.less";
+@import "@{bootstrap-dir}buttons.less";
+
+// Components
+//@import "@{bootstrap-dir}component-animations.less";
+@import "@{bootstrap-dir}glyphicons.less";
+//@import "@{bootstrap-dir}dropdowns.less";
+//@import "@{bootstrap-dir}button-groups.less";
+//@import "@{bootstrap-dir}input-groups.less";
+//@import "@{bootstrap-dir}navs.less";
+//@import "@{bootstrap-dir}navbar.less";
+//@import "@{bootstrap-dir}breadcrumbs.less";
+//@import "@{bootstrap-dir}pagination.less";
+//@import "@{bootstrap-dir}pager.less";
+//@import "@{bootstrap-dir}labels.less";
+//@import "@{bootstrap-dir}badges.less";
+//@import "@{bootstrap-dir}jumbotron.less";
+//@import "@{bootstrap-dir}thumbnails.less";
+//@import "@{bootstrap-dir}alerts.less";
+//@import "@{bootstrap-dir}progress-bars.less";
+@import "@{bootstrap-dir}media.less";
+//@import "@{bootstrap-dir}list-group.less";
+@import "@{bootstrap-dir}panels.less";
+@import "@{bootstrap-dir}wells.less";
+//@import "@{bootstrap-dir}close.less";
+
+// Components w/ JavaScript
+//@import "@{bootstrap-dir}modals.less";
+//@import "@{bootstrap-dir}tooltip.less";
+//@import "@{bootstrap-dir}popovers.less";
+//@import "@{bootstrap-dir}carousel.less";
+
+// Utility classes
+@import "@{bootstrap-dir}utilities.less";
+//@import "@{bootstrap-dir}responsive-utilities.less";
+
 body {
-	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-	font-size: 16px;
-	color: #222;
-	padding: 10px;
-}
-
-a {
-	color: #0000ff;
-}
-
-h1 {
-	font-size: 30px;
-	span {
-		font-size: 30px;
-		font-weight: bold;
-		color: #3F79C2;
-	}
-}
-
-h2 {
-	font-size: 20px;
-	border-bottom: 1px dashed #aaaaaa;
-}
-
-h3 {
-	font-size: 18px;
-}
-
-#history {
-	> li {
-		margin-bottom: 20px;
-		margin-left: 10px;
-		font-weight: bold;
-	}
+	padding: 10px 20px;
 }
 
 ul {
-	padding-left: 20px;
-	&.updates {
-		padding-top: 5px;
-		li {
+	padding-left: 25px;
+}
+
+h1 {
+	border-bottom: 1px solid #ddd;
+	span {
+		color: @brand-primary;
+		font-weight: bold;
+	}
+}
+
+h3 {
+	border-bottom: 1px dashed #ddd;
+}
+
+#history {
+	li {
+		font-weight: bold;
+		margin-bottom: 15px;
+		span {
 			font-weight: normal;
-			font-size: 14px;
-			padding-bottom: 2px;
+			font-size: 12px;
+		}
+	}
+	.updates {
+		li {
+			font-size: 12px;
+			font-weight: normal;
+			margin-bottom: 0px;
 		}
 	}
 }
 
-li {
-	span {
-		font-weight: normal;
-		font-size: 14px;
-	}
-}
-
-.sidebox {
-	float: right;
-	width: 550px;
-	padding-left: 20px;
-	background-color: #ffffff;
-	.small {
-		width: 450px;
-	}
-}
-
-.box {
-	border: 1px solid #3F79C2;
-	background-color: #DAE5F3;
-	padding: 10px;
-	margin-bottom: 10px;
-
-	&.tip {
-		border-color: #3FC254;
-		background-color: #D6F7DE;
-	}
-
-	h3 {
-		margin-top: 0px;
-	}
-
-	h4 {
-		margin: 0px;
-	}
-
+.shortcuts {
 	p {
-		margin: 5px 0px;
-		font-size: 14px;
+		margin-bottom: 0px;
 		&.indent {
 			margin-left: 20px;
 		}
 	}
+}
 
-	ul {
-		margin-top: 5px;
-		li {
-			font-size: 14px;
-			a {
-				font-size: 13px;
-			}
-		}
+.contribute {
+	.btn {
+		margin: 20px 0px;
 	}
-
 }
 
-img.update-note {
-	position: relative;
-	top: 4px;
-}
-
-#noshow {
-	border: 1px solid #cc0000;
-	background-color: #ff9b9b;
-	font-weight: bold;
+.media-body {
+	font-size: 12px;
 }

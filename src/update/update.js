@@ -38,13 +38,6 @@
         }, false);
     }
 
-	/*
-	 * Sidebox width
-	 */
-	if (window.outerWidth < 1300) {
-		document.querySelector('.sidebox').classList.add('small');
-	}
-
     /*
      * Header
      */

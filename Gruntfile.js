@@ -70,6 +70,15 @@ module.exports = function (grunt) {
 					'!*.less'
 				],
 				dest: 'build/'
+			},
+
+			fonts: {
+				expand: true,
+				cwd: 'bower_components/bootstrap/fonts/',
+				src: [
+					'*'
+				],
+				dest: 'build/fonts/'
 			}
 		},
 

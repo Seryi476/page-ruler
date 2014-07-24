@@ -1,3 +1,0 @@
-[submodule "deps/lesshat"]
-	path = deps/lesshat
-	url = https://github.com/csshat/lesshat.git
