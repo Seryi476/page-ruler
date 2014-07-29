@@ -54,7 +54,10 @@ window.__PageRuler = {
 
 		// update page dimensions on resize
 		this.El.registerListener(window, 'resize', function() {
-			_this.Dimensions.update();
+            var rect = document.body.getBoundingClientRect();
+            var width = rect.width;
+            var height = rect.height;
+			_this.Dimensions.update(width, height);
 		});
 
 		// register keyboard movement events

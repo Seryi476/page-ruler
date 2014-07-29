@@ -69,12 +69,14 @@ pr.Dimensions = {
 
 	/**
 	 * Updates the allowable page dimensions and applies all resize callbacks
+     * @param {Number} pageWidth    The new page width
+     * @param {Number} pageHeight   The new page height
 	 */
-	update:			function() {
+	update:			function(pageWidth, pageHeight) {
 
 		// update pageRight and pageBottom values
-		this.pageRight	= document.body.scrollWidth;
-		this.pageBottom	= document.body.scrollHeight;
+		this.pageRight	= pageWidth;
+		this.pageBottom	= pageHeight;
 
 		// loop through all callbacks
 		for (var i=0,ilen=this.updateCallbacks.length; i<ilen; i++) {
