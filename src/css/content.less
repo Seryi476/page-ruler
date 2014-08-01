@@ -50,45 +50,6 @@ input {
 		&[type=checkbox] {
 			.appearance(~'checkbox !important');
 		}
-		&[type=number] {
-			&::-webkit-inner-spin-button,
-			&::-webkit-outer-spin-button {
-				.appearance(~'none !important');
-				cursor:				pointer !important;
-				display:			block !important;
-				width:				14px !important;
-				color:				#333 !important;
-				text-align:			center !important;
-				position:			relative !important;
-				background-color:	#ccc !important;
-				height:				21px !important;
-			}
-
-			&::-webkit-inner-spin-button:hover,
-			&::-webkit-outer-spin-button:hover {
-				color:	@toolbar-color !important;
-			}
-
-			&::-webkit-inner-spin-button:before,
-			&::-webkit-inner-spin-button:after,
-			&::-webkit-outer-spin-button:before,
-			&::-webkit-outer-spin-button:after {
-				content:		"^" !important;
-				position:		absolute !important;
-				font-family:	monospace !important;
-				font-size:		20px !important;
-				right:			1px !important;
-			}
-
-			&::-webkit-inner-spin-button:before, &::-webkit-outer-spin-button:before {
-				top:	-2px !important;
-			}
-
-			&::-webkit-inner-spin-button:after, &::-webkit-outer-spin-button:after {
-				bottom:				-2px !important;
-				.transform(~'rotate(180deg) !important');
-			}
-		}
 	}
 }
 
@@ -228,6 +189,11 @@ input {
 		padding:	3px 17px 3px 3px !important;
 		width:		70px !important;
 		text-align:	right !important;
+		&::-webkit-inner-spin-button {
+			-webkit-appearance: inner-spin-button !important;
+			position: relative;
+			left: 16px;
+		}
 	}
 
 	input[type=color] {
@@ -380,105 +346,6 @@ input {
 			top: -8px !important;
 		}
 	}
-
-	/*#page-ruler-element-toolbar-tracking-mode-toggle {
-		position:	relative !important;
-
-		width:		70px !important;
-		&.lang_pt {
-			width:	110px !important;
-		}
-		&.lang_es {
-			width:	125px !important;
-		}
-
-		display:	inline-block !important;
-		.user-select(~'none !important');
-		input {
-			display: none !important;
-
-			&:checked {
-				+ label {
-					.page-ruler-inner {
-						margin-left: 0 !important;
-					}
-					.page-ruler-switch {
-						right:	0px !important;
-					}
-				}
-			}
-
-		}
-		label {
-			display:		block !important;
-			overflow:		hidden !important;
-			cursor:			pointer !important;
-			border:			2px solid #999999 !important;
-			.border-radius(~'20px !important');
-			padding-right:	0px !important;
-			margin-left:	0px !important;
-			height:			26px !important;
-			z-index:		1 !important;
-
-			.page-ruler-inner, .page-ruler-switch {
-				cursor: pointer !important;
-			}
-
-			.page-ruler-inner {
-				width:			200% !important;
-				margin-left:	-100% !important;
-				.transition(~'margin 0.3s ease-in 0s !important');
-				&:after, &:before {
-					float:			left !important;
-					width:			50% !important;
-					height:			30px !important;
-					padding:		0px !important;
-					line-height:	24px !important;
-					font-size:		12px !important;
-					color:			#ffffff !important;
-					font-family:	Trebuchet, Arial, sans-serif !important;
-					font-weight:	bold !important;
-					.box-sizing(~'border-box !important');
-				}
-				&:before {
-					content:			"__MSG_elementToolbarToggleOn__" !important;
-					text-transform:		uppercase !important;
-					padding-left:		10px !important;
-					background-color:	@toolbar-color !important;
-					color:				#ffffff !important;
-				}
-				&:after {
-					content:			"__MSG_elementToolbarToggleOff__" !important;
-					text-transform:		uppercase !important;
-					padding-right:		10px !important;
-					background-color:	#eeeeee !important;
-					color:				#999999 !important;
-					text-align:			right !important;
-				}
-			}
-
-			.page-ruler-switch {
-				width:		16px !important;
-				margin:		3px !important;
-				background:	#ffffff !important;
-				border:		2px solid #999999 !important;
-				.border-radius(~'20px !important');
-				position:	absolute !important;
-				top:		0px !important;
-				bottom:		0px !important;
-				right:		40px !important;
-				.transition(~'all 0.3s ease-in 0s !important');
-
-				&.lang_pt {
-					right:	80px !important;
-				}
-				&.lang_pt {
-					right:	95px !important;
-				}
-
-			}
-		}
-	}*/
 
 
 }
@@ -639,5 +506,12 @@ input {
 		border-right: none !important;
 		border-bottom: none !important;
 	}
+
+}
+
+// responsive view
+@media (min-width: 2000px) {
+
+
 
 }
