@@ -23,7 +23,7 @@ pr.el.Mask = pr.cls(
 		pr.El.appendEl(document.body, this.dom);
 		
 		// resize the mask if the browser size changes
-		pr.Dimensions.addUpdateCallback(function(width, height) {		
+		pr.Dimensions.addUpdateCallback(function(width, height) {
 			_this.dom.style.setProperty('width', pr.Util.px(width), 'important');
 			_this.dom.style.setProperty('height', pr.Util.px(height), 'important');
 		});
@@ -40,6 +40,7 @@ pr.el.Mask = pr.cls(
 		 * @type {HTMLElement}
 		 */
 		dom:	null
+
 	}
 );
 
