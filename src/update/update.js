@@ -27,7 +27,10 @@
         var link = links[i];
         link.addEventListener('click', function(e) {
             e.preventDefault();
-            window.open(this.href);
+			// open tab
+			chrome.tabs.create({
+				url: this.href
+			});
             // track link click
             chrome.runtime.sendMessage(
                 {

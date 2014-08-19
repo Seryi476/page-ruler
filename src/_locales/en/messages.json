@@ -335,9 +335,19 @@
 		"description": "Support section text"
 	},
 
+	"updateSupportText2": {
+		"message": "If you are feeling especially awesome and generous, at the request of a few users I have also added a donate link.",
+		"description": "Second line of the support section text"
+	},
+
 	"updateSupportReviewText": {
 		"message": "Leave a Review",
 		"description": "Leave review button text"
+	},
+
+	"updateSupportDonateText": {
+		"message": "Donate",
+		"description": "Donate button text"
 	},
 
 	"updateOtherExtensionsText": {
