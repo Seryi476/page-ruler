@@ -23,7 +23,11 @@
     border:			0 !important;
     outline:		0 !important;
     vertical-align:	baseline !important;
-	font:			normal normal normal 12px "Helvetica Neue", Helvetica, Arial, sans-serif !important;
+	font-size:		12px !important;
+	font-family:	"Helvetica Neue", Helvetica, Arial, sans-serif !important;
+	font-style:		normal !important;
+	font-variant:	normal !important;
+	font-weight:	normal !important;
 	position:		relative !important;
 	display:		inline !important;
 	color:			#000000 !important;
@@ -186,9 +190,10 @@ input {
 	}
 
 	input[type=number] {
-		padding:	3px 17px 3px 3px !important;
-		width:		70px !important;
-		text-align:	right !important;
+		font-family:	"Helvetica Neue", Helvetica, Arial, sans-serif !important;
+		padding:		3px 17px 3px 3px !important;
+		width:			70px !important;
+		text-align:		right !important;
 		&::-webkit-inner-spin-button {
 			.appearance(~'inner-spin-button !important');
 			position: relative !important;
@@ -297,12 +302,15 @@ input {
 		}
 	}
 
+	.page-ruler-container {
+		padding-top: 0 !important;
+	}
+
 	.page-ruler-help-container {
 		padding-left:	20px !important;
 		background:		transparent url('images/help.png') no-repeat left center !important;
 		margin-left:	10px !important;
 		flex:			1 !important;
-		padding-top:	8px !important;
 	}
 
 	.page-ruler-nav-container {
@@ -327,7 +335,6 @@ input {
 
 	#page-ruler-element-toolbar-element {
 		padding-left:	10px !important;
-		padding-top:	3px !important;
 		span {
 			font-size:	13px !important;
 		}
