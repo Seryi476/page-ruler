@@ -649,7 +649,7 @@ pr.el.ElementToolbar = pr.cls(
 
 				// set tag, id and class parts
 				container.querySelector('.page-ruler-tag').innerText	= descParts.tag;
-				container.querySelector('.page-ruler-id').innerText	= descParts.id;
+				container.querySelector('.page-ruler-id').innerText		= descParts.id;
 				container.querySelector('.page-ruler-cls').innerText	= descParts.cls;
 
 				// update title
@@ -750,6 +750,9 @@ pr.el.ElementToolbar = pr.cls(
 
 			// update guides
 			pr.elements.guides.setSizes();
+
+			// show ruler
+			pr.elements.ruler.show();
 
 		}
 
