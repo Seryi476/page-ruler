@@ -46,18 +46,23 @@
      */
 	var h1 = document.querySelector('h1');
 	var headerText = '';
+	var titleText = '';
 
 	if (location.hash === '#install') {
+		titleText = chrome.i18n.getMessage('updatePageTitleInstall');
 		headerText = chrome.i18n.getMessage('updatePageHeaderInstall');
 	}
 	else if (location.hash === '#update') {
     	headerText = chrome.i18n.getMessage('updatePageHeader', chrome.runtime.getManifest().version);
+		titleText = chrome.i18n.getMessage('updatePageTitle');
 	}
 	else {
+		titleText = chrome.i18n.getMessage('extName');
 		headerText = chrome.i18n.getMessage('extName');
 	}
 
 	h1.innerHTML = headerText;
+	document.title = titleText;
 
 	/*
 	 * No show checkbox

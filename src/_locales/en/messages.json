@@ -331,12 +331,12 @@
 	},
 
 	"updateSupportText": {
-		"message": "Page Ruler is and always will be <b>free</b>. If you have a spare moment please support it by leaving a review.",
+		"message": "Page Ruler is and always will be <b>free</b>. If you have a spare moment please support it by leaving a review and letting everyone else know what a great and useful tool it is.",
 		"description": "Support section text"
 	},
 
 	"updateSupportText2": {
-		"message": "If you are feeling especially awesome and generous, at the request of a few users I have also added a donate link.",
+		"message": "If you are feeling especially awesome and generous, some users have asked if they can make a donation to say thanks for Page Ruler. I would rather any money went to a cause more worthy than myself so if you would like to say thank you at the same time as helping a charity that is close to my heart it would make my day :)",
 		"description": "Second line of the support section text"
 	},
 
@@ -346,13 +346,18 @@
 	},
 
 	"updateSupportDonateText": {
-		"message": "Donate",
+		"message": "Read More and Donate",
 		"description": "Donate button text"
 	},
 
 	"updateOtherExtensionsText": {
 		"message": "My Other Extensions",
 		"description": "Other extensions section title"
+	},
+
+	"updatePageTitleInstall": {
+		"message": "Page Ruler Installed",
+		"description": "Page title for the install page"
 	}
 
 }

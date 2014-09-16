@@ -434,6 +434,19 @@ chrome.runtime.onMessage.addListener(function(message, sender, sendResponse) {
 
 			sendResponse();
 
+		break;
+
+		// open help page
+		case 'openHelp':
+
+			PageRuler.Analytics.trackEvent(['Action', 'Help Link']);
+
+			chrome.tabs.create({
+				url: chrome.extension.getURL('update.html') + '#help'
+			});
+
+		break;
+
 	}
 
 	console.groupEnd();

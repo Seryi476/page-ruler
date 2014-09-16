@@ -669,7 +669,9 @@ pr.el.Toolbar = pr.cls(
 				},
 				{
 					'click': function(e) {
-						window.open(chrome.extension.getURL('update.html') + '#help');
+						chrome.runtime.sendMessage({
+							action:		'openHelp'
+						});
 					}
 				}
 			);
