@@ -191,13 +191,11 @@ input {
 
 	input[type=number] {
 		font-family:	"Helvetica Neue", Helvetica, Arial, sans-serif !important;
-		padding:		3px 17px 3px 3px !important;
-		width:			70px !important;
+		padding: 		3px !important;
+		width:			55px !important;
 		text-align:		right !important;
 		&::-webkit-inner-spin-button {
 			.appearance(~'inner-spin-button !important');
-			position: relative !important;
-			left: 16px !important;
 		}
 	}
 
@@ -228,14 +226,14 @@ input {
 	.page-ruler-px-container {
 		display:	inline !important;
 		position:	relative !important;
-		&:after {
+		/*&:after {
 			content:	'px' !important;
 			position:	absolute !important;
 			right:		17px !important;
 			top:		0px !important;
 			color:		#aaaaaa !important;
 			.user-select(~'none !important');
-		}
+		}*/
 	}
 
 	.page-ruler-element-toggle-container {
@@ -518,7 +516,7 @@ input {
 }
 
 // responsive view
-@media (max-width: 1100px) {
+@media only screen and (max-width: 1100px) {
 
 	#page-ruler-toolbar {
 
@@ -543,7 +541,7 @@ input {
 
 }
 
-@media (max-width: 915px) {
+@media only screen and (max-width: 915px) {
 
 	#page-ruler-toolbar {
 
@@ -574,6 +572,46 @@ input {
 				font-size: 10px !important;
 				padding: 1px 3px !important;
 			}
+		}
+
+	}
+
+}
+
+@media only screen and (max-width: 630px) {
+
+	#page-ruler-toolbar-color-container {
+		label {
+			display: none !important;
+		}
+		input[type=color] {
+			margin-top: 6px !important;
+			height: 18px !important;
+		}
+	}
+	#page-ruler-toolbar-guides-container {
+		> label {
+			display: none !important;
+		}
+	}
+	#page-ruler-toolbar-guides-toggle {
+		margin-top: 3px !important;
+		transform: scale(0.8) !important;
+	}
+
+}
+
+@media only screen and (max-width: 510px) {
+
+	#page-ruler-toolbar {
+
+		#page-ruler-toolbar-help-container.page-ruler-container {
+			display: none !important;
+		}
+
+		#page-ruler-toolbar-close-container,
+		#page-ruler-toolbar-dock-container{
+			padding: 5px 0 !important;
 		}
 
 	}
