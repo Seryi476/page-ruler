@@ -258,22 +258,22 @@
 	},
 
 	"updateKeyboardShortcutsRulerCtrl": {
-		"message": "<b>+ Ctrl (Command):</b> Expand the ruler outwards by 1 pixel",
+		"message": "<b>+ Ctrl:</b> Expand the ruler outwards by 1 pixel",
 		"description": "Arrow keys + Ctrl shortcut description"
 	},
 
 	"updateKeyboardShortcutsRulerShiftCtrl": {
-		"message": "<b>+ Shift + Ctrl (Command):</b> Expand the ruler outwards by 10 pixels",
+		"message": "<b>+ Shift + Ctrl:</b> Expand the ruler outwards by 10 pixels",
 		"description": "Arrow keys + Shift + Ctrl shortcut description"
 	},
 
 	"updateKeyboardShortcutsRulerCtrlAlt": {
-		"message": "<b>+ Ctrl (Command) + Alt:</b> Shrink the ruler inwards by 1 pixel",
+		"message": "<b>+ Ctrl + Alt:</b> Shrink the ruler inwards by 1 pixel",
 		"description": "Arrow keys _Ctrl + Alt shortcut description"
 	},
 
 	"updateKeyboardShortcutsRulerShiftCtrlAl": {
-		"message": "<b>+ Shift + Ctrl (Command) + Alt:</b> Shrink the ruler inwards by 10 pixels",
+		"message": "<b>+ Shift + Ctrl + Alt:</b> Shrink the ruler inwards by 10 pixels",
 		"description": "Arrow keys + Shift + Alt shortcut description"
 	},
 
